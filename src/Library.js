@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 
-class Library extends Component {
-    render() {
-        console.log('Props', this.props)
-        return (            
-            <div className="list-books">
+function Library (props) {
+    return (
+        <div className="list-books">
                 <div className="list-books-title">
                   <h1>MyReads</h1>
                 </div>
@@ -15,7 +13,7 @@ class Library extends Component {
                       <div className="bookshelf-books">
                         <ol className="books-grid">
             
-                          {this.props.books.map((book) => (
+                          {props.books.map((book) => (
                           <li kye={book.id}>
                             <div className="book">
                               <div className="book-top">
@@ -44,7 +42,7 @@ class Library extends Component {
                       <div className="bookshelf-books">
                         <ol className="books-grid">
             
-                          {this.props.books.map((book) => (
+                          {props.books.map((book) => (
                           <li kye={book.id}>
                             <div className="book">
                               <div className="book-top">
@@ -73,7 +71,7 @@ class Library extends Component {
                       <div className="bookshelf-books">
                         <ol className="books-grid">
             
-                          {this.props.books.map((book) => (
+                          {props.books.map((book) => (
                           <li kye={book.id}>
                             <div className="book">
                               <div className="book-top">
@@ -98,10 +96,9 @@ class Library extends Component {
                 </div>
             </div>
         </div>
-            </div>
-               
-        )
-    }
+    </div>
+    
+    )
 }
 
 export default Library
