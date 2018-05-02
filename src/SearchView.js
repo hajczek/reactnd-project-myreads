@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import SelectCategory from './SelectCategory'
 
-function CurrentlyReading (props) {
+function SearchView (props) {
     return (
         <div className="bookshelf">
-            <h2 className="bookshelf-title">Currently Reading</h2>
+            <h2 className="bookshelf-title">Read</h2>
         <div className="bookshelf-books">
         <ol className="books-grid">
             {props.books.map((book) => (
@@ -13,7 +13,7 @@ function CurrentlyReading (props) {
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.thumbnail})` }}></div>
                             <div className="book-shelf-changer">
-                                 <select>
+                                <select>
                                     <SelectCategory />
                                 </select>
                             </div>
@@ -29,4 +29,4 @@ function CurrentlyReading (props) {
     )
 }
 
-export default CurrentlyReading
+export default SearchView

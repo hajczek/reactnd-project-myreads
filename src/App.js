@@ -2,6 +2,7 @@ import React from 'react'
 import Read from './Read'
 import WantToRead from './WantToRead'
 import CurrentlyReading from './CurrentlyReading'
+import SearchView from './SearchView'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 
@@ -66,6 +67,12 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
+changeCategory = (book) => {
+    this.setState((state) => ({
+        books: state.books.filter((b) => b.category !== book.category)
+    }))
+}
+
   render() {
     return (
       <div className="app">
@@ -87,7 +94,9 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">                  
+                  <SearchView onChangeCategory={this.changeCategory} books={this.state.books} />
+              </ol>
             </div>
           </div>
         ) : (
@@ -97,9 +106,9 @@ class BooksApp extends React.Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                      <Read books={this.state.books} />
-                      <WantToRead books={this.state.books} />
-                      <CurrentlyReading books={this.state.books} />
+                      <Read onChangeCategory={this.changeCategory} books={this.state.books} />
+                      <WantToRead onChangeCategory={this.changeCategory} books={this.state.books} />
+                      <CurrentlyReading onChangeCategory={this.changeCategory} books={this.state.books} />
                     </div>
                 </div>
             </div>
