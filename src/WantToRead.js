@@ -28,4 +28,9 @@ function WantToRead (props) {
     )
 }
 
+WantToRead.propTypes = {
+    books: PropTypes.array.isRequired,
+    changeCategory: PropTypes.func.isRequired
+}
+
 export default WantToRead

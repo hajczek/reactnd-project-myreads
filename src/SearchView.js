@@ -5,7 +5,7 @@ import SelectCategory from './SelectCategory'
 function SearchView (props) {
     return (
         <div className="bookshelf">
-            <h2 className="bookshelf-title">SearchView</h2>
+            <h2 className="bookshelf-title">Search View</h2>
         <div className="bookshelf-books">
         <ol className="books-grid">
             {props.books.map((book) => (
@@ -26,6 +26,11 @@ function SearchView (props) {
         </div>
     </div>  
     )
+}
+
+SearchView.propTypes = {
+    books: PropTypes.array.isRequired,
+    changeCategory: PropTypes.func.isRequired
 }
 
 export default SearchView

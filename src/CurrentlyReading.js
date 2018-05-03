@@ -28,4 +28,9 @@ function CurrentlyReading (props) {
     )
 }
 
+CurrentlyReading.propTypes = {
+    books: PropTypes.array.isRequired,
+    changeCategory: PropTypes.func.isRequired
+}
+
 export default CurrentlyReading
