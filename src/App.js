@@ -1,5 +1,6 @@
 import React from 'react'
 import Read from './Read'
+import { Link } from 'react-router-dom'
 import WantToRead from './WantToRead'
 import CurrentlyReading from './CurrentlyReading'
 import SearchView from './SearchView'
@@ -15,7 +16,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
+    // showSearchPage: false,
     screen: 'list'
   }
 
@@ -66,12 +67,21 @@ changeCategory = (book) => {
                            <CreateReview />
                         </div> 
                     )}
+                    {this.state.screen === 'add-book' && (
+                        <div>
+                           <SearchView 
+                            onNavigate={() => {
+                                this.setState({ screen: 'add-book'})
+                            }}
+                            />
+                        </div> 
+                    )}
                 </div>
             </div>
         )}
             
         <div className="open-search">
-            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+           <Link to="/add-book">Add a book</Link>
         </div>
       </div>
     )

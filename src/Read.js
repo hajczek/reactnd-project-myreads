@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import SelectCategory from './SelectCategory'
 import CreateReview from './CreateReview'
@@ -26,9 +27,8 @@ class Read extends Component {
                             </div>
                             <div className="book-title">{book.title}</div>
                             <div className="book-authors">{book.author}</div>
-                            <a href="#create" onClick={this.props.onNavigate}
-                            className="create-review"
-                            >Add Review</a>
+                            <Link to="/create"
+                            className="create-review">Add Review</Link>
                         </div>
                     </li>
                     ))}
