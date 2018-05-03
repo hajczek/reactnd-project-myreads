@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import SelectCategory from './SelectCategory'
+import CreateReview from './CreateReview'
 
 class Read extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         changeCategory: PropTypes.func.isRequired
     }
+
     render() {
         return (
             <div className="bookshelf">
@@ -24,10 +26,13 @@ class Read extends Component {
                             </div>
                             <div className="book-title">{book.title}</div>
                             <div className="book-authors">{book.author}</div>
+                            <a href="#create" onClick={this.props.onNavigate}
+                            className="create-review"
+                            >Add Review</a>
                         </div>
                     </li>
                     ))}
-                </ol>
+                </ol>              
             </div>
         </div>  
         )

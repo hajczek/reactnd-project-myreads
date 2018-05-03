@@ -5,6 +5,7 @@ import CurrentlyReading from './CurrentlyReading'
 import SearchView from './SearchView'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import CreateReview from './CreateReview'
 
 class BooksApp extends React.Component {
   state = {      
@@ -15,6 +16,7 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
+    screen: 'list'
   }
 
 componentDidMount() {
@@ -46,18 +48,31 @@ changeCategory = (book) => {
                     <h1>MyReads</h1>
                 </div>
                 <div className="list-books-content">
+                    
+                    {this.state.screen === 'list' && (
                     <div>
-                      <Read onChangeCategory={this.changeCategory} books={this.state.books} />
+                    <Read
+                        books={this.state.books}                     onChangeCategory={this.changeCategory}
+                        onNavigate={() => {
+                            this.setState({ screen: 'create'})
+                        }}
+                      />
                       <WantToRead onChangeCategory={this.changeCategory} books={this.state.books} />
                       <CurrentlyReading onChangeCategory={this.changeCategory} books={this.state.books} />
                     </div>
+                    )} 
+                    {this.state.screen === 'create' && (
+                        <div>
+                           <CreateReview />
+                        </div> 
+                    )}
                 </div>
             </div>
         )}
             
-             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
+        <div className="open-search">
+            <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+        </div>
       </div>
     )
   }
