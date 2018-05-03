@@ -18,13 +18,25 @@ class SearchView extends Component {
         this.setState({ query: query.trim() })
     }
 
-    render() {    
+    render() {
+        
+        const { books, onChangeCategory } = this.props
+        const { query } = this.state
+        
+        let showingBooks
+        if (query){
+            const match = new RegExp(escapeRegExp(query), 'i')
+            showingBooks = books.filter((book) => match.test(book.title))
+            
+        } else {
+            showingBooks = books
+        }
+        
         return (
             <div>
              <div className="search-books-bar">
               <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
               <div className="search-books-input-wrapper">
-                  {JSON.stringify(this.state)}
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
                   You can find these search terms here:
@@ -33,14 +45,16 @@ class SearchView extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)} />
+                <input type="text" placeholder="Search by title or author" value={query} onChange={(event) => this.updateQuery(event.target.value)} />
 
               </div>
             </div>
+
             <div className="search-books-results">
+
                 <div className="search-books">
-                    <ol className="books-grid">                  
-                        {this.props.books.map((book) => (
+                    <ol className="books-grid">                
+                        {showingBooks.map((book) => (
                         <li kye={book.id}>
                             <div className="book">
                                 <div className="book-top">
