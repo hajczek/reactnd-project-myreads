@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 function SelectCategory (props) {
     return (
-        <select id="select-category" onChange={() => props.onChangeCategory(props.book)}>
+        <select id="select-category" onChange={() => this.props.onChangeCategory(props.book)}>
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
