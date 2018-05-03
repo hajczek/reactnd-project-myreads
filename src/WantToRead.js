@@ -23,7 +23,7 @@ function WantToRead (props) {
                 ))}
             </ol>
         </div>
-    </div> 
+    </div>
     )
 }
 
