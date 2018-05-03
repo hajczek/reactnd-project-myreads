@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import SelectCategory from './SelectCategory'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import App from './App'
 
 class SearchView extends Component {
     static propTypes = {
@@ -25,8 +26,8 @@ class SearchView extends Component {
         
         let showingBooks
         if (query){
-            const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.title))
+            const match = new RegExp(escapeRegExp(query))
+            showingBooks = books.filter((book) => match.test(book.title || book.author))
             
         } else {
             showingBooks = books

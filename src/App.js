@@ -1,5 +1,6 @@
 import React from 'react'
 import Read from './Read'
+import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import WantToRead from './WantToRead'
 import CurrentlyReading from './CurrentlyReading'
@@ -48,40 +49,26 @@ changeCategory = (book) => {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <div className="list-books-content">
-                    
-                    {this.state.screen === 'list' && (
-                    <div>
-                    <Read
-                        books={this.state.books}                     onChangeCategory={this.changeCategory}
-                        onNavigate={() => {
-                            this.setState({ screen: 'create'})
-                        }}
-                      />
-                      <WantToRead onChangeCategory={this.changeCategory} books={this.state.books} />
-                      <CurrentlyReading onChangeCategory={this.changeCategory} books={this.state.books} />
-                    </div>
-                    )} 
-                    {this.state.screen === 'create' && (
+                <div className="list-books-content">                   
+                    <Route exact path="/" render={() => (
                         <div>
-                           <CreateReview />
-                        </div> 
-                    )}
-                    {this.state.screen === 'add-book' && (
-                        <div>
-                           <SearchView 
-                            onNavigate={() => {
-                                this.setState({ screen: 'add-book'})
-                            }}
-                            />
-                        </div> 
-                    )}
+                            <Read
+                                books={this.state.books}                     
+                                onChangeCategory={this.changeCategory}
+                              />
+                            <WantToRead onChangeCategory={this.changeCategory} books={this.state.books} />
+                            <CurrentlyReading onChangeCategory={this.changeCategory} books={this.state.books} />
+                        </div>
+                    )} />
+                    <Route path="/create" component={CreateReview}/>
+                        
+                    <Route path="/search" component={SearchView}/>
                 </div>
             </div>
         )}
             
         <div className="open-search">
-           <Link to="/add-book">Add a book</Link>
+           <Link to="/search" className="search">Add a book</Link>
         </div>
       </div>
     )
