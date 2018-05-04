@@ -63,7 +63,6 @@ class BooksApp extends React.Component {
                             </div>
                         )} />    
                         
-                            
                         <Route exact path="/search" render={() => (
                             <div>
                                 <SearchView
