@@ -57,7 +57,7 @@ class SearchView extends Component {
                 <div className="search-books">
                     <ol className="books-grid">
                         {showingBooks.map((book) => (
-                        <li kye={book.name}>
+                        <li kye={book.id}>
                             <div className="book">
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.thumbnail})` }}></div>

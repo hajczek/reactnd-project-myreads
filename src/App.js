@@ -35,6 +35,14 @@ class BooksApp extends React.Component {
 
         // BooksAPI.change(book.category)
     }
+    
+    /* createReview(review) {
+        BooksAPI.create(review).then(review => {
+            this.setState(state => ({
+                books: state.books.concat([review])
+            }))
+        })
+    } */
 
     render() {
         return (
@@ -55,10 +63,14 @@ class BooksApp extends React.Component {
                             </div>
                         )} />
                             
-                        <Route exact path="/create" render={() => (
+                        <Route exact path="/create" render={(history) => (
                             <div>
                                 <CreateReview
-                                    books={this.state.books} 
+                                    books={this.state.books}
+                                    onCreateReview={(review) => {
+                                        this.createReview(review)
+                                        history.push('/')
+                                    }}
                                   />
                             </div>
                         )} />    
