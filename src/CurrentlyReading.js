@@ -20,7 +20,10 @@ class CurrentlyReading extends Component  {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
-                                   <SelectCategory />
+                                   <SelectCategory 
+                                        books={this.state.books}
+                                        onChangeCategory={this.changeCategory}
+                                    />
                                 </div>
                             </div>
                             <div className="book-title">{book.title}</div>
