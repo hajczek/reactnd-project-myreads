@@ -1,7 +1,7 @@
 import React from 'react'
-import Read from './Read'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Read from './Read'
 import WantToRead from './WantToRead'
 import CurrentlyReading from './CurrentlyReading'
 import SearchView from './SearchView'
@@ -12,13 +12,6 @@ import CreateReview from './CreateReview'
 class BooksApp extends React.Component {
     state = {      
         books: [],
-        /**
-        * TODO: Instead of using this state variable to keep track of which page
-        * we're on, use the URL in the browser's address bar. This will ensure that
-        * users can use the browser's back and forward buttons to navigate between
-        * pages, as well as provide a good URL they can bookmark and share.
-        */
-        // showSearchPage: false,
         screen: 'list'
     }
 
@@ -28,13 +21,26 @@ class BooksApp extends React.Component {
         })
     }
 
-    changeCategory = (book) => {
-        this.setState((state) => ({
-            books: state.books.filter((b) => b.category !== book.category)
-        }))
 
-        // BooksAPI.change(book.category)
+    changeCategory = (book, shelf) => {
+        if (this.state.books) {
+            BooksAPI.update(book,shelf).then(() => {
+                book.shelf = shelf;
+                this.setState(state => ({
+                    books: state.books.filter(b => b.id !== book.id).concat([ book ])
+                }))
+            })
+        }
     }
+
+    /* changeCategory = (book) => {
+        const newCategory = e.target.value
+        const bookId = this.props.bookId
+        
+        BooksAPI.update(bookId, newCategory).then(
+    	      response => console.log(response)
+        ) 
+    }*/
     
     /* createReview(review) {
         BooksAPI.create(review).then(review => {
@@ -55,15 +61,24 @@ class BooksApp extends React.Component {
                         <Route exact path="/" render={() => (
                             <div>
                                 <Read
-                                    books={this.state.books}                     
+                                    // books={this.state.books} 
+                                    books = {this.state.books.filter(book => book.shelf === "read")}
                                     onChangeCategory={this.changeCategory}
                                   />
-                                <WantToRead onChangeCategory={this.changeCategory} books={this.state.books} />
-                                <CurrentlyReading onChangeCategory={this.changeCategory} books={this.state.books} />
+                                <WantToRead 
+                                    // books={this.state.books} />
+                                    books = {this.state.books.filter(book => book.shelf === "wantToRead")}
+                                    onChangeCategory={this.changeCategory} 
+                                />
+                                <CurrentlyReading 
+                                    // books={this.state.books}
+                                    books = {this.state.books.filter(book => book.shelf === "currentlyReading")}
+                                    onChangeCategory={this.changeCategory}
+                                />
                             </div>
                         )} />
                             
-                        <Route exact path="/create" render={(history) => (
+                        <Route path="/create" render={(history) => (
                             <div>
                                 <CreateReview
                                     books={this.state.books}
@@ -75,7 +90,7 @@ class BooksApp extends React.Component {
                             </div>
                         )} />    
                         
-                        <Route exact path="/search" render={() => (
+                        <Route path="/search" render={() => (
                             <div>
                                 <SearchView
                                     books={this.state.books}

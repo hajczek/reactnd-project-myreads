@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import SelectCategory from './SelectCategory'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import * as BooksAPI from './BooksAPI'
 
 class SearchView extends Component {
     static propTypes = {
@@ -12,16 +13,16 @@ class SearchView extends Component {
     }
 
     state = {
-        query: ''
+        query: '',
+        books: []
     }
 
     updateQuery = (query) => {
-        this.setState({ query: query.trim() })   
-    }
-    
-    /* clearQuery = () => {
-        this.setState({ query: ''})
-    } */
+        this.setState({ query })
+        BooksAPI.search(query, 30).then((books) => {
+          this.setState({ books })
+        })
+      }
 
     render() {
         
@@ -30,8 +31,8 @@ class SearchView extends Component {
         
         let showingBooks = [];
         if (query){
-            const match = new RegExp(escapeRegExp(query), 'i')
-            showingBooks = books.filter((book) => match.test(book.title || book.author))            
+             const match = new RegExp(escapeRegExp(query))
+             showingBooks = books.filter((book) => match.test(book.title || book.author))            
         } else {
             <div>Search book</div>
         }
@@ -49,7 +50,7 @@ class SearchView extends Component {
                         However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                         you don't find a specific author or title. Every search is limited by search terms.
                     */}
-                    <input type='text' placeholder='Search by title or author' value={query} onChange={(event) => this.updateQuery(event.target.value)} />             
+                    <input type='text' placeholder='Search books by title or author' value={query} onChange={(event) => this.updateQuery(event.target.value)} />
                 </div>
             </div>
 
@@ -60,9 +61,15 @@ class SearchView extends Component {
                         <li kye={book.id}>
                             <div className="book">
                                 <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.thumbnail})` }}></div>
+                                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                         <div className="book-shelf-changer">
-                                            <SelectCategory />
+                                            <select id="select-shelf" value={book.shelf} onChange={e => (this.props.changeCategory(book, e.target.value))}>>        
+                                                <option value="none" disabled>Move to...</option>
+                                                <option value="currentlyReading">Currently Reading</option>
+                                                <option value="wantToRead">Want to Read</option>
+                                                <option value="read">Read</option>
+                                                <option value="none">None</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div className="book-title">{book.title}</div>
