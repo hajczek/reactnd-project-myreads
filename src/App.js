@@ -31,10 +31,10 @@ class BooksApp extends React.Component {
 
     render() {
         return (
-            <div className="app">
+            <div className="app" role="main">
                 <div className="list-books">            
                     <div className="list-books-title">
-                        <h1>MyReads</h1>
+                        <h1>My Reads</h1>
                     </div>
                     <div className="list-books-content">                   
                         <Route exact path="/" render={(history) => (

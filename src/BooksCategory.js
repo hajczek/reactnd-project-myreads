@@ -27,7 +27,7 @@ class BooksCategory extends Component {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
-                                    <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.props.onChangeCategory(book, event.target.value)}>>        
+                                    <select ref={book.shelf} aria-label="Choose category for book" className="select-shelf" value={book.shelf} onChange={(event) => this.props.onChangeCategory(book, event.target.value)}>>        
                                         <option value="none" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>
@@ -38,7 +38,6 @@ class BooksCategory extends Component {
                             </div>
                             <div className="book-title">{book.title}</div>
                             <div className="book-authors">{book.author}</div>
-                            <div className="book-shelf">{book.shelf}</div>
                             <div className="book-thumbnail">{book.thumbnail}</div>
                         </div>
                     </li>
