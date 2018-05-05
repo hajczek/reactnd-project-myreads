@@ -48,21 +48,7 @@ class SearchView extends Component {
                         https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
 
                         However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                        you don't find a specific author or title. Every search is limited by search terms.
-                        
-                        
-                        
-                        <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.changeCategory(book, event.target.value)}>>        
-                                                <option value="none" disabled>Move to...</option>
-                                                <option value="currentlyReading">Currently Reading</option>
-                                                <option value="wantToRead">Want to Read</option>
-                                                <option value="read">Read</option>
-                                                <option value="none">None</option>
-                                            </select>
-                                            
-                                            
-                                            
-                    */}
+                        you don't find a specific author or title. Every search is limited by search terms.                                        */}
                     <input type='text' placeholder='Search books by title or author' value={query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
                 </div>
             </div>

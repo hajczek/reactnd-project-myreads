@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import CreateReview from './CreateReview'
 import * as BooksAPI from './BooksAPI'
 
 class BooksCategory extends Component {
@@ -41,7 +40,6 @@ class BooksCategory extends Component {
                             <div className="book-authors">{book.author}</div>
                             <div className="book-shelf">{book.shelf}</div>
                             <div className="book-thumbnail">{book.thumbnail}</div>
-                            <Link to="/create" className="create-review">Add Review</Link>
                         </div>
                     </li>
                     ))}

@@ -5,7 +5,6 @@ import BooksCategory from './BooksCategory'
 import SearchView from './SearchView'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import CreateReview from './CreateReview'
 
 class BooksApp extends React.Component {
     state = {      
@@ -29,14 +28,6 @@ class BooksApp extends React.Component {
             })
         }
     }
-
-    /* createReview(review) {
-        BooksAPI.create(review).then(review => {
-            this.setState(state => ({
-                books: state.books.concat([review])
-            }))
-        })
-    } */
 
     render() {
         return (
@@ -64,19 +55,7 @@ class BooksApp extends React.Component {
                                     onChangeCategory={this.changeCategory}
                                 />
                             </div>
-                        )} />
-                            
-                        <Route path="/create" render={(history) => (
-                            <div>
-                                <CreateReview
-                                    books={this.state.books}
-                                    onCreateReview={(review) => {
-                                        this.createReview(review)
-                                        history.push('/')
-                                    }}
-                                  />
-                            </div>
-                        )} />    
+                        )} /> 
                         
                         <Route path="/search" render={(history) => (
                             <div>
