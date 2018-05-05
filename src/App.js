@@ -19,15 +19,17 @@ class BooksApp extends React.Component {
         })
     }
 
-    /* changeCategory = (book) => {
-        const newCategory = e.target.value
-        const bookId = this.props.bookId
-        
-        BooksAPI.update(bookId, newCategory).then(
-    	      response => console.log(response)
-        ) 
-    }*/
-    
+    changeCategory = (book, shelf) => {
+        if (this.state.books) {
+            BooksAPI.update(book,shelf).then(() => {
+                book.shelf = shelf;
+                this.setState(state => ({
+                    books: state.books.filter(b => b.id !== book.id).concat([ book ])
+                }))
+            })
+        }
+    }
+
     /* createReview(review) {
         BooksAPI.create(review).then(review => {
             this.setState(state => ({
@@ -44,7 +46,7 @@ class BooksApp extends React.Component {
                         <h1>MyReads</h1>
                     </div>
                     <div className="list-books-content">                   
-                        <Route exact path="/" render={() => (
+                        <Route exact path="/" render={(history) => (
                             <div>
                                 <BooksCategory
                                     categoryName = 'Read'
@@ -80,10 +82,7 @@ class BooksApp extends React.Component {
                             <div>
                                 <SearchView
                                     books={this.state.books}
-                                    onChangeCategory={() => {
-                                        this.changeCategory
-                                        //history.push('/')
-                                    }}
+                                    onChangeCategory={this.changeCategory}
                                   />
                             </div>
                         )} />

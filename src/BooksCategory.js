@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import SelectCategory from './SelectCategory'
 import CreateReview from './CreateReview'
+import * as BooksAPI from './BooksAPI'
 
 class BooksCategory extends Component {
     state = {
-    books: []
+        books: [],
+        book: {}
     }
 
-    static propTypes = {
-        books: PropTypes.array.isRequired
+     static propTypes = {
+        books: PropTypes.array.isRequired,
+        book: PropTypes.object.isRequired,
+        changeCategory: PropTypes.func.isRequired
     }
 
     render() {        
@@ -25,7 +28,7 @@ class BooksCategory extends Component {
                         <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                 <div className="book-shelf-changer">
-                                    <select id="select-shelf" value={book.shelf}>        
+                                    <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.props.onChangeCategory(book, event.target.value)}>>        
                                         <option value="none" disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead">Want to Read</option>

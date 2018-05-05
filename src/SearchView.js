@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-// import SelectCategory from './SelectCategory'
 import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
 
@@ -23,17 +22,6 @@ class SearchView extends Component {
         BooksAPI.search(query, 30).then((books) => {
           this.setState({ books })
         })
-    }
-    
-    changeCategory = (book, shelf) => {
-        if (this.state.books) {
-            BooksAPI.update(book,shelf).then(() => {
-                book.shelf = shelf;
-                this.setState(state => ({
-                    books: state.books.filter(b => b.shelf !== book.shelf).concat([ book ])
-                }))
-            })
-        }
     }
 
     render() {
@@ -88,7 +76,7 @@ class SearchView extends Component {
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                         <div className="book-shelf-changer">
-                                            <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.changeCategory(book, event.target.value)}>>        
+                                            <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.props.onChangeCategory(book, event.target.value)}>>        
                                                 <option value="none" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
