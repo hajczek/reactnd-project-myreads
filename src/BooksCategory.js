@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import SelectCategory from './SelectCategory'
 import CreateReview from './CreateReview'
 
-class Read extends Component {
+class BooksCategory extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         onChangeCategory: PropTypes.func.isRequired
@@ -47,4 +47,4 @@ class Read extends Component {
     }
 }
 
-export default Read
+export default BooksCategory
