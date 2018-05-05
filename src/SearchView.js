@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import SelectCategory from './SelectCategory'
+// import SelectCategory from './SelectCategory'
 import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import * as BooksAPI from './BooksAPI'
 
 class SearchView extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
+        book: PropTypes.object.isRequired,
         changeCategory: PropTypes.func.isRequired
     }
 
     state = {
         query: '',
-        books: []
+        books: [],
+        book: {}
     }
 
     updateQuery = (query) => {
@@ -22,7 +23,18 @@ class SearchView extends Component {
         BooksAPI.search(query, 30).then((books) => {
           this.setState({ books })
         })
-      }
+    }
+    
+    changeCategory = (book, shelf) => {
+        if (this.state.books) {
+            BooksAPI.update(book,shelf).then(() => {
+                book.shelf = shelf;
+                this.setState(state => ({
+                    books: state.books.filter(b => b.shelf !== book.shelf).concat([ book ])
+                }))
+            })
+        }
+    }
 
     render() {
         
@@ -49,8 +61,21 @@ class SearchView extends Component {
 
                         However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                         you don't find a specific author or title. Every search is limited by search terms.
+                        
+                        
+                        
+                        <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.changeCategory(book, event.target.value)}>>        
+                                                <option value="none" disabled>Move to...</option>
+                                                <option value="currentlyReading">Currently Reading</option>
+                                                <option value="wantToRead">Want to Read</option>
+                                                <option value="read">Read</option>
+                                                <option value="none">None</option>
+                                            </select>
+                                            
+                                            
+                                            
                     */}
-                    <input type='text' placeholder='Search books by title or author' value={query} onChange={(event) => this.updateQuery(event.target.value)} />
+                    <input type='text' placeholder='Search books by title or author' value={query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
                 </div>
             </div>
 
@@ -63,7 +88,7 @@ class SearchView extends Component {
                                 <div className="book-top">
                                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                         <div className="book-shelf-changer">
-                                            <select id="select-shelf" value={book.shelf} onChange={e => (this.props.changeCategory(book, e.target.value))}>>        
+                                            <select ref={book.shelf} id="select-shelf" value={book.shelf} onChange={(event) => this.changeCategory(book, event.target.value)}>>        
                                                 <option value="none" disabled>Move to...</option>
                                                 <option value="currentlyReading">Currently Reading</option>
                                                 <option value="wantToRead">Want to Read</option>
@@ -74,6 +99,7 @@ class SearchView extends Component {
                                     </div>
                                     <div className="book-title">{book.title}</div>
                                     <div className="book-authors">{book.author}</div>
+                                    <div className="book-shelf">{book.shelf}</div>
                                 </div>
                             </li>
                         ))}
