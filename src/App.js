@@ -1,9 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import Read from './Read'
-import WantToRead from './WantToRead'
-import CurrentlyReading from './CurrentlyReading'
+import BooksCategory from './BooksCategory'
 import SearchView from './SearchView'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
@@ -60,18 +58,18 @@ class BooksApp extends React.Component {
                     <div className="list-books-content">                   
                         <Route exact path="/" render={() => (
                             <div>
-                                <Read
-                                    // books={this.state.books} 
+                                <BooksCategory
+                                    categoryName = 'Read'
                                     books = {this.state.books.filter(book => book.shelf === "read")}
                                     onChangeCategory={this.changeCategory}
                                   />
-                                <WantToRead 
-                                    // books={this.state.books} />
+                                <BooksCategory
+                                    categoryName = 'Want to read'
                                     books = {this.state.books.filter(book => book.shelf === "wantToRead")}
                                     onChangeCategory={this.changeCategory} 
                                 />
-                                <CurrentlyReading 
-                                    // books={this.state.books}
+                                <BooksCategory
+                                    categoryName = 'Currently Reading'
                                     books = {this.state.books.filter(book => book.shelf === "currentlyReading")}
                                     onChangeCategory={this.changeCategory}
                                 />
