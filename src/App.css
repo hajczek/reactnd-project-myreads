@@ -77,6 +77,10 @@ body, .app {
 
 /* search page */
 
+form {
+    width: 100%;
+}
+
 .search-books-bar {
   position: fixed;
   width: 80%;
