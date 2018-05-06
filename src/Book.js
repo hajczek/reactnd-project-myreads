@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
     state = {
@@ -10,8 +9,7 @@ class Book extends Component {
 
      static propTypes = {
         books: PropTypes.array.isRequired,
-        book: PropTypes.object.isRequired,
-        changeCategory: PropTypes.func.isRequired
+        onChangeCategory: PropTypes.func.isRequired
     }
 
     render() {        
