@@ -42,8 +42,8 @@ class SearchView extends Component {
             <div className="search-books-results">                
                 <div className="search-books">
                     <ol className="books-grid">
-                        {this.state.books.map((book) => (
-                        <li key={book.id}>
+                        {this.state.books.map((book) => (  
+                         <li key={book.id}>
                             <Book 
                                 books = {this.props.books}
                                 onChangeCategory={this.props.onChangeCategory}
