@@ -13,7 +13,7 @@ There are 2 pages:
 - 2. Search Page - where you can search books by the chosen search term and put chosen book to your library. 
 
 All search terms which you can use are in this file:
-[Search terms](https://github.com/hajczek/reactnd-project-myreads-starter/blob/master/license/SEARCH_TERMS.md)
+[Search terms](https://github.com/hajczek/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md)
 
 You can change the category of book by the select list with all categories.
 
