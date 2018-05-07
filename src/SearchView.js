@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import sortBy from 'sort-by'
 
 class SearchView extends Component {
     state = {
@@ -11,7 +12,7 @@ class SearchView extends Component {
     }
 
     updateQuery = (query) => {
-        this.setState({ query })
+        this.setState({query})
         BooksAPI.search(query, 10).then((books) => {
           this.setState({books})
         })
@@ -24,7 +25,7 @@ class SearchView extends Component {
  
         if (query){
             const match = new RegExp(escapeRegExp(query))
-            books.filter((book) => match.test(book.title))
+            books.filter((book) => match.test(book.title || book.authors))
         }
         
         return (
@@ -38,7 +39,7 @@ class SearchView extends Component {
                 </form>
             </div>
 
-            <div className="search-books-results">                
+            <div className="search-books-results">
                 <div className="search-books">
                     <ol className="books-grid">
                         {this.state.books.map((book) => (  
