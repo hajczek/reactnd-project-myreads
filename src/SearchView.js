@@ -17,21 +17,16 @@ class SearchView extends Component {
           this.setState({ books })
         })
     }
-
+    
     render() {
         
         const { books } = this.props
         const { query } = this.state
-        
-        let showingBooks = [];
+ 
         if (query){
-             const match = new RegExp(escapeRegExp(query), 'i')
-             showingBooks = books.filter((book) => match.test(book.title))            
-        } else {
-            showingBooks = books
+            const match = new RegExp(escapeRegExp(query))
+            books.filter((book) => match.test(book.title))
         }
-        
-        showingBooks.sort(sortBy('title'))
         
         return (
             <div>
@@ -39,20 +34,12 @@ class SearchView extends Component {
                     <Link className="close-search" to="/">Close</Link>
                     <form>
                         <div className="search-books-input-wrapper">
-                        {/*
-                            NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                            You can find these search terms here:
-                            https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                            However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                            you don't find a specific author or title. Every search is limited by search terms.
-                        */}
                         <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
                     </div>
                 </form>
             </div>
 
-            <div className="search-books-results">
+            <div className="search-books-results">                
                 <div className="search-books">
                     <ol className="books-grid">
                         {this.state.books.map((book) => (
