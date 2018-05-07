@@ -33,7 +33,7 @@ class SearchView extends Component {
                     <Link className="close-search" to="/">Close</Link>
                     <form>
                         <div className="search-books-input-wrapper">
-                        <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
+                        <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} tabIndex="0" />
                     </div>
                 </form>
             </div>
