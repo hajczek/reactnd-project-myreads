@@ -12,15 +12,15 @@ class SearchView extends Component {
 
     updateQuery = (query) => {
         this.setState({ query })
-        BooksAPI.search(query, 30).then((books) => {
-          this.setState({ books })
+        BooksAPI.search(query, 10).then((books) => {
+          this.setState({books})
         })
     }
     
     render() {
         
-        const { books } = this.props
-        const { query } = this.state
+        const {books} = this.props
+        const {query} = this.state
  
         if (query){
             const match = new RegExp(escapeRegExp(query))
@@ -33,7 +33,7 @@ class SearchView extends Component {
                     <Link className="close-search" to="/">Close</Link>
                     <form>
                         <div className="search-books-input-wrapper">
-                        <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} tabIndex="0" />
+                        <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
                     </div>
                 </form>
             </div>

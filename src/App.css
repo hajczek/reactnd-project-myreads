@@ -37,7 +37,7 @@ body, .app {
 }
 
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 68px 0 80px;
   flex: 1;
 }
 
@@ -124,7 +124,7 @@ form {
 }
 
 .search-books-results {
-  padding: 160px 10px 20px;
+  padding: 80px 10px 20px;
 }
 
 
