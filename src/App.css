@@ -84,7 +84,7 @@ form {
 .search-books-bar {
   position: fixed;
   width: 80%;
-  top: 0;
+  top: 68px;
   left: 10%;
   z-index: 5;
   display: flex;
