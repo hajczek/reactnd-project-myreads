@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+/* import PropTypes from 'prop-types' */
 import Book from './Book'
 
 class BooksCategory extends Component {
-    state = {
+   /* state = {
         books: [],
         book: {}
     }
@@ -11,7 +11,7 @@ class BooksCategory extends Component {
      static propTypes = {
         books: PropTypes.array.isRequired,
         onChangeCategory: PropTypes.func.isRequired
-    }
+    } */
 
     render() {        
         return (
