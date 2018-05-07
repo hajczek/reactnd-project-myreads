@@ -20,7 +20,7 @@ class SearchView extends Component {
     
     render() {
         
-        const {books} = this.props
+        const {books, onChangeCategory} = this.props
         const {query} = this.state
  
         if (query){
@@ -34,27 +34,27 @@ class SearchView extends Component {
                     <Link className="close-search" to="/">Close</Link>
                     <form>
                         <div className="search-books-input-wrapper">
-                        <input type='text' placeholder='Search books by title or author' value={this.state.query} ref={query} onChange={(event) => this.updateQuery(event.target.value)} />
-                    </div>
-                </form>
-            </div>
+                            <input type='text' placeholder='Search books by title or author' value={query} onChange={(event) => this.updateQuery(event.target.value)} />
+                        </div>
+                    </form>
+                </div>
 
-            <div className="search-books-results">
-                <div className="search-books">
-                    <ol className="books-grid">
-                        {this.state.books.map((book) => (  
-                         <li key={book.id}>
-                            <Book 
-                                books = {this.props.books}
-                                onChangeCategory={this.props.onChangeCategory}
-                                book = {book}
-                            />
-                        </li>
-                        ))}
-                    </ol>
+                <div className="search-books-results">
+                    <div className="search-books">
+                        <ol className="books-grid">
+                            {this.state.books.map((book) => (  
+                             <li key={book.id}>
+                                <Book 
+                                    books = {books}
+                                    onChangeCategory={onChangeCategory}
+                                    book = {book}
+                                />
+                            </li>
+                            ))}
+                        </ol>
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
