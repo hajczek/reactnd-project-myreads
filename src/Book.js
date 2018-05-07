@@ -28,7 +28,7 @@ class Book extends Component {
                 </div>
             </div>
             <div className="book-title" tabIndex="0">{this.props.book.title}</div>
-            <div className="book-authors" tabIndex="0">{this.props.book.author}</div>
+            <div className="book-authors" tabIndex="0">{this.props.book.authors}</div>
         </div>
         )
     }
