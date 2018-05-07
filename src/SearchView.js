@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
-import sortBy from 'sort-by'
 
 class SearchView extends Component {
     state = {
