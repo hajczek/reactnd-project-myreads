@@ -7,20 +7,32 @@ import * as BooksAPI from './BooksAPI'
 class SearchView extends Component {
     state = {
         query: '',
-        books: []
+        books: [],
+        filteredBooks: []
     }
 
     updateQuery = (query) => {
         this.setState({query})
-        if(query){
-            BooksAPI.search(query, 20).then((books) => {
-            this.setState({books})})
-            const match = new RegExp(escapeRegExp(query))
-            this.state.books.filter((book) => match.test(book.title) || match.test(book.title))
-        } else {
-            this.setState({books: []});
-        }
+            if(query){
+                BooksAPI.search(query).then((books) => { 
+                    if(books instanceof Array)  {
+                        //add books to state
+                        this.setState({books})
+                        //filter array
+                        const match = new RegExp(escapeRegExp(query))
+                        const filteredBooks = this.state.books.filter((book) => match.test(book.title) || match.test(book.title))
+                        this.setState({books: filteredBooks})
+                    }
+                    else {
+                        //set book state to empty array
+                        this.setState({books: []})
+                    }
+
+                }
+            )
+        }    
     }
+
     
     render() {
         
@@ -37,14 +49,13 @@ class SearchView extends Component {
                     </div>
                 </form>
             </div>
-            {this.state.length!==0 && (
+           {books.length!==0 && (
                 <div className="search-books-results">
                     <div className="search-books">
                         <ol className="books-grid">
-                            {this.state.books.map((book) => (  
+                            {books.map((book) => (  
                                 <li key={book.id}>
-                                    <Book 
-                                        books = {books}
+                                    <Book
                                         onChangeCategory={onChangeCategory}
                                         book = {book}
                                     />
@@ -53,16 +64,17 @@ class SearchView extends Component {
                         </ol>
                     </div>
                 </div>
-                )}
-                {( this.state.length===0 && this.state.query.length!==0 ) && (
-                <div className="search-results">
+               )}
+               {(books.length===0 && query.length!==0) && (
+               <div className="search-results">
                     {`No book found`}
                 </div>
-                )}
-            </div>  
+               )}
+            </div> 
 
         )
     }
+    
 }
 
 export default SearchView

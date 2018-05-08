@@ -8,8 +8,7 @@ import './App.css'
 
 class BooksApp extends React.Component {
     state = {      
-        books: [],
-        screen: 'list'
+        books: []
     }
 
     componentDidMount() {
@@ -30,6 +29,9 @@ class BooksApp extends React.Component {
     }
 
     render() {
+        
+        const { books } = this.state        
+        
         return (
             <div className="app" role="main">
                 <div className="list-books">            
@@ -41,17 +43,17 @@ class BooksApp extends React.Component {
                             <div>
                                 <BooksCategory
                                     categoryName = 'Read'
-                                    books = {this.state.books.filter(book => book.shelf === "read")}
+                                    books = {books.filter(book => book.shelf === "read")}
                                     onChangeCategory={this.changeCategory}
                                   />
                                 <BooksCategory
                                     categoryName = 'Want to read'
-                                    books = {this.state.books.filter(book => book.shelf === "wantToRead")}
+                                    books = {books.filter(book => book.shelf === "wantToRead")}
                                     onChangeCategory={this.changeCategory} 
                                 />
                                 <BooksCategory
                                     categoryName = 'Currently Reading'
-                                    books = {this.state.books.filter(book => book.shelf === "currentlyReading")}
+                                    books = {books.filter(book => book.shelf === "currentlyReading")}
                                     onChangeCategory={this.changeCategory}
                                 />
                             </div>
@@ -60,7 +62,7 @@ class BooksApp extends React.Component {
                         <Route path="/search" render={(history) => (
                             <div>
                                 <SearchView
-                                    books={this.state.books}
+                                    books={books}
                                     onChangeCategory={this.changeCategory}
                                   />
                             </div>

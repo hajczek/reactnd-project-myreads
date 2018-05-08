@@ -3,15 +3,6 @@ import React, { Component } from 'react'
 import Book from './Book'
 
 class BooksCategory extends Component {
-   /* state = {
-        books: [],
-        book: {}
-    }
-
-     static propTypes = {
-        books: PropTypes.array.isRequired,
-        onChangeCategory: PropTypes.func.isRequired
-    } */
 
     render() {        
         return (
