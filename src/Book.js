@@ -3,13 +3,16 @@ import React, { Component } from 'react'
 
 class Book extends Component {
 
-    render() {        
+    render() { 
+        
+        const {book, onChangeCategory} = this.props        
+        
         return (
             <div className="book">
                 <div className="book-top">
-                {this.props.book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`}}></div>}
+                {book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>}
                 <div className="book-shelf-changer">
-                    <select tabIndex="0" ref={this.props.book.shelf} aria-label="Choose category for book" className="select-shelf" value={this.props.book.shelf} onChange={(event) => this.props.onChangeCategory(this.props.book, event.target.value)}>>        
+                    <select tabIndex="0" ref={book.shelf} aria-label="Choose category for book" className="select-shelf" value={book.shelf} onChange={(event) => onChangeCategory(book, event.target.value)}>>        
                         <option value="test">Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
@@ -18,8 +21,8 @@ class Book extends Component {
                     </select>
                 </div>
             </div>
-          {this.props.book.title && <div className="book-title" tabIndex="0">{this.props.book.title}</div>}
-          {this.props.book.authors && <div className="book-authors" tabIndex="0">{this.props.book.authors}</div>}
+          {book.title && <div className="book-title" tabIndex="0">{book.title}</div>}
+          {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}
         </div>
         )
     }
