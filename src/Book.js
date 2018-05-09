@@ -1,17 +1,28 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 class Book extends Component {
     
+    state = {      
+        display: 'none'
+    }
+
+    handleClick = () => {
+        this.setState({
+          display: 'block'
+        })
+    }
+    
     render() {
-        
+                 
         function displayBlock (){
-           style.display = "none"; 
+           // style.display = "none";
+            console.log('done')
         }
         
         const {book, onChangeCategory} = this.props        
         
         return (
+            <div>
             <div className="book">
                 <div className="book-top">
                 {book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>}
@@ -27,15 +38,15 @@ class Book extends Component {
             </div>
           {book.title && <div className="book-title" tabIndex="0">{book.title}</div>}
           {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}
-          <p id="details" onClick={displayBlock}>More details »</p>
-            <div className="book">
+          <p className="details" onClick={this.handleClick}>More details »</p>
+        </div>
+        <div className="bookDetails" style={{display:this.state.display}}>
                 {book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>}
                 {book.title && <div className="book-title" tabIndex="0">{book.title}</div>}
                 {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}                
                 {book.pageCount && <div className="book-pageCount" tabIndex="0">Page count: {book.pageCount}</div>}
                 {book.description && <div className="book-pageCount" tabIndex="0">Description: {book.description}</div>}
             </div>
-
         </div>
         )
     }
