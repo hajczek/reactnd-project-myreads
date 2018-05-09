@@ -7,7 +7,7 @@ class Book extends Component {
         return (
             <div className="book">
                 <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`}}></div>
+                {this.props.book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`}}></div>}
                 <div className="book-shelf-changer">
                     <select tabIndex="0" ref={this.props.book.shelf} aria-label="Choose category for book" className="select-shelf" value={this.props.book.shelf} onChange={(event) => this.props.onChangeCategory(this.props.book, event.target.value)}>>        
                         <option value="test">Move to...</option>
@@ -18,8 +18,8 @@ class Book extends Component {
                     </select>
                 </div>
             </div>
-            <div className="book-title" tabIndex="0">{this.props.book.title}</div>
-            <div className="book-authors" tabIndex="0">{this.props.book.authors}</div>
+          {this.props.book.title && <div className="book-title" tabIndex="0">{this.props.book.title}</div>}
+          {this.props.book.authors && <div className="book-authors" tabIndex="0">{this.props.book.authors}</div>}
         </div>
         )
     }
