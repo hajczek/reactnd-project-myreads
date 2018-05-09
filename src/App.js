@@ -27,7 +27,7 @@ class BooksApp extends React.Component {
             })
         }
     }
-
+    
     render() {
         
         const {books} = this.state        
@@ -67,6 +67,7 @@ class BooksApp extends React.Component {
                                   />
                             </div>
                         )} />
+
                      </div>
                     <div className="open-search">
                         <Link to="/search" className="search">Add a book</Link>
