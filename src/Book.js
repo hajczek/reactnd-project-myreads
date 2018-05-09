@@ -12,6 +12,12 @@ class Book extends Component {
         })
     }
     
+    handleClick2 = () => {
+        this.setState({
+          display: 'none'
+        })
+    }
+    
     render() {
                  
         function displayBlock (){
@@ -46,6 +52,7 @@ class Book extends Component {
                 {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}                
                 {book.pageCount && <div className="book-pageCount" tabIndex="0">Page count: {book.pageCount}</div>}
                 {book.description && <div className="book-pageCount" tabIndex="0">Description: {book.description}</div>}
+                <span className="close" onClick={this.handleClick2}>Close X</span>
             </div>
         </div>
         )
