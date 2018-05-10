@@ -164,7 +164,7 @@ form {
 .book-top {
   background-size: cover;
   position: relative;
-  height: 200px;
+  height: 205px;
   display: flex;
   align-items: flex-end;
   background-color: #fff;
@@ -215,7 +215,7 @@ form {
   background: #eee;
   position: relative;
   left: 6px;
-  bottom: 3px;
+  bottom: 6px;
 }
 
 .book-cover-title {
