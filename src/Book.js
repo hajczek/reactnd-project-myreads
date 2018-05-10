@@ -46,7 +46,7 @@ class Book extends Component {
           {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}
           <p className="details" onClick={this.handleClick}>More details »</p>
         </div>
-        <div className="bookDetails" style={{display:this.state.display}}>
+        <div className="book-details" style={{display:this.state.display}}>
                 {book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>}
                 {book.title && <div className="book-title-details" tabIndex="0">{book.title}</div>}
                 {book.authors && <div className="book-authors-details" tabIndex="0">{book.authors}</div>}                
