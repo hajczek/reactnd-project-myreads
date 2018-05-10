@@ -19,11 +19,6 @@ class Book extends Component {
     }
     
     render() {
-                 
-        function displayBlock (){
-           // style.display = "none";
-            console.log('done')
-        }
         
         const {book, onChangeCategory} = this.props        
         
