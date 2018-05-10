@@ -273,6 +273,16 @@ form {
     margin-bottom: 20px;
 }
 
+.book-details .book-link-details {
+    color: red;
+    text-decoration: underline;
+    font-size: 0.9em;
+}
+
+.book-details .book-link-details:hover {
+    text-decoration: none;
+}
+
 .book-details .close {
     float: right;
     cursor: pointer;
