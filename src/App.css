@@ -93,7 +93,6 @@ form {
   left: 10%;
   z-index: 5;
   display: flex;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
 }
 
 .search-books-input-wrapper {
@@ -243,7 +242,7 @@ form {
 .book-details {
     width: 80%;
     margin-left:  10%;
-    border: 1px solid red;
+    border: 1px solid #666;
     display: block;
     position: absolute;
     top: 68px;
@@ -268,6 +267,20 @@ form {
     font-size: 0.9em;
     color: #888;
     margin-bottom: 20px;
+}
+
+.book-details .book-pageCount-details {
+    margin-bottom: 20px;
+}
+
+.book-details .close {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.book-details .close:hover {
+    color: #666;
 }
 
 /* Responosivnes options */

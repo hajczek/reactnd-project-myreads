@@ -47,6 +47,10 @@ class Book extends Component {
                 {book.authors && <div className="book-authors-details" tabIndex="0">{book.authors}</div>}                
                 {book.description && <div className="book-pageCount-details" tabIndex="0">{book.description}</div>}
                 {book.pageCount && <div className="book-pageCount-details" tabIndex="0">Page count: {book.pageCount}</div>}
+
+                {book.canonicalVolumeLink&&(<div><a className="book-link-details" target="_blank" href = {`${book.canonicalVolumeLink}`}>Visit the page about this book »</a></div>)}
+
+
                 <span className="close" onClick={this.closePopup}>Close X</span>
             </div>
         </div>
