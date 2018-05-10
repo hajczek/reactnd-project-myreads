@@ -48,10 +48,10 @@ class Book extends Component {
         </div>
         <div className="bookDetails" style={{display:this.state.display}}>
                 {book.imageLinks && <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>}
-                {book.title && <div className="book-title" tabIndex="0">{book.title}</div>}
-                {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}                
-                {book.pageCount && <div className="book-pageCount" tabIndex="0">Page count: {book.pageCount}</div>}
-                {book.description && <div className="book-pageCount" tabIndex="0">Description: {book.description}</div>}
+                {book.title && <div className="book-title-details" tabIndex="0">{book.title}</div>}
+                {book.authors && <div className="book-authors-details" tabIndex="0">{book.authors}</div>}                
+                {book.pageCount && <div className="book-pageCount-details" tabIndex="0">Page count: {book.pageCount}</div>}
+                {book.description && <div className="book-pageCount-details" tabIndex="0">Description: {book.description}</div>}
                 <span className="close" onClick={this.handleClick2}>Close X</span>
             </div>
         </div>
