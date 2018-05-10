@@ -6,13 +6,13 @@ class Book extends Component {
         display: 'none'
     }
 
-    handleClick = () => {
+    openPopup = () => {
         this.setState({
           display: 'block'
         })
     }
     
-    handleClick2 = () => {
+    closePopup = () => {
         this.setState({
           display: 'none'
         })
@@ -39,7 +39,7 @@ class Book extends Component {
             </div>
           {book.title && <div className="book-title" tabIndex="0">{book.title}</div>}
           {book.authors && <div className="book-authors" tabIndex="0">{book.authors}</div>}
-          <p className="details" onClick={this.handleClick}>More details »</p>
+          <p className="details" onClick={this.openPopup}>More details »</p>
         </div>
         <div className="book-details" style={{display:this.state.display}}>
                 {book.imageLinks && <div className="book-cover" style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>}
@@ -47,7 +47,7 @@ class Book extends Component {
                 {book.authors && <div className="book-authors-details" tabIndex="0">{book.authors}</div>}                
                 {book.pageCount && <div className="book-pageCount-details" tabIndex="0">Page count: {book.pageCount}</div>}
                 {book.description && <div className="book-pageCount-details" tabIndex="0">Description: {book.description}</div>}
-                <span className="close" onClick={this.handleClick2}>Close X</span>
+                <span className="close" onClick={this.closePopup}>Close X</span>
             </div>
         </div>
         )
