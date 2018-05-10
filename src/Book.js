@@ -45,8 +45,8 @@ class Book extends Component {
                 {book.imageLinks && <div className="book-cover" style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})`}}></div>}
                 {book.title && <div className="book-title-details" tabIndex="0">{book.title}</div>}
                 {book.authors && <div className="book-authors-details" tabIndex="0">{book.authors}</div>}                
+                {book.description && <div className="book-pageCount-details" tabIndex="0">{book.description}</div>}
                 {book.pageCount && <div className="book-pageCount-details" tabIndex="0">Page count: {book.pageCount}</div>}
-                {book.description && <div className="book-pageCount-details" tabIndex="0">Description: {book.description}</div>}
                 <span className="close" onClick={this.closePopup}>Close X</span>
             </div>
         </div>
