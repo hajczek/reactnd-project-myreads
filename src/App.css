@@ -251,8 +251,24 @@ form {
     background-color: #fff;
     padding: 20px;
     display: none;
+    z-index: 10;
 }
 
+.book-details .book-cover {
+    float: left;
+    margin-right: 30px;
+}
+
+.book-details .book-title-details {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.book-details .book-authors-details {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 20px;
+}
 
 /* Responosivnes options */
 
