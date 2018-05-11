@@ -18,10 +18,6 @@ class SearchView extends Component {
                     if(books instanceof Array)  {
                         //add books to state
                         this.setState({books})
-                        //filter array
-                        const match = new RegExp(escapeRegExp(query))
-                        const filteredBooks = this.state.books.filter((book) => match.test(book.title) || match.test(book.title))
-                        this.setState({books: filteredBooks})
                     }
                     else {
                         //set book state to empty array
