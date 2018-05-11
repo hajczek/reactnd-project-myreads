@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
 
@@ -28,7 +27,6 @@ class SearchView extends Component {
             )
         }    
     }
-
     
     render() {
         

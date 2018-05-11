@@ -86,6 +86,10 @@ form {
     width: 100%;
 }
 
+.search-books {
+    margin-top: 60px;
+}
+
 .search-books-bar {
   position: fixed;
   width: 80%;

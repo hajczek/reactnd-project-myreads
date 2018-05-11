@@ -6,6 +6,21 @@ import SearchView from './SearchView'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 
+const categories = [
+    {
+        "title": "Currently Reading", 
+        "id": "currentlyReading"
+    },
+    {
+        "title": "Want to Read", 
+        "id": "wantToRead"
+    },
+    {
+        "title": "Read", 
+        "id": "read"
+    }
+]
+
 class BooksApp extends React.Component {
     state = {      
         books: []
@@ -29,50 +44,41 @@ class BooksApp extends React.Component {
     }
     
     render() {
-        
-        const {books} = this.state        
-        
+       
+        const {books} = this.state
+               
         return (
             <div className="app" role="main">
                 <div className="list-books">            
                     <div className="list-books-title">
                         <h1 tabIndex="0">My Reads</h1>
                     </div>
-                    <div className="list-books-content">                   
-                        <Route exact path="/" render={(history) => (
-                            <div>
-                                <BooksCategory
-                                    categoryName = 'Read'
-                                    books = {books.filter(book => book.shelf === "read")}
-                                    onChangeCategory={this.changeCategory}
-                                  />
-                                <BooksCategory
-                                    categoryName = 'Want to read'
-                                    books = {books.filter(book => book.shelf === "wantToRead")}
-                                    onChangeCategory={this.changeCategory} 
-                                />
-                                <BooksCategory
-                                    categoryName = 'Currently Reading'
-                                    books = {books.filter(book => book.shelf === "currentlyReading")}
-                                    onChangeCategory={this.changeCategory}
-                                />
-                            </div>
-                        )} /> 
+            
+                    <Route exact path="/" render={(history) => (
+                        <div>
+                            <BooksCategory                                
+                                onChangeCategory={this.changeCategory}
+                                books = {books}
+                                categories={categories}
+                            />
+                        </div>
+                    )}/>
                         
-                        <Route path="/search" render={(history) => (
-                            <div>
-                                <SearchView
-                                    books={books}
-                                    onChangeCategory={this.changeCategory}
-                                  />
-                            </div>
-                        )} />
+                    <Route path="/search" render={(history) => (
+                        <div>
+                            <SearchView
+                                books={books}
+                                onChangeCategory={this.changeCategory}
+                                />
+                        </div>
+                    )} />
 
-                     </div>
-                    <div className="open-search">
-                        <Link to="/search" className="search">Add a book</Link>
-                    </div>
                 </div>
+
+                <div className="open-search">
+                    <Link to="/search" className="search">Add a book</Link>
+                </div>
+                
             </div>
         )
     }
