@@ -58,7 +58,7 @@ class BooksApp extends React.Component {
                         <div>
                             <BooksCategory                                
                                 onChangeCategory={this.changeCategory}
-                                books = {books}
+                                books={books}
                                 categories={categories}
                             />
                         </div>
